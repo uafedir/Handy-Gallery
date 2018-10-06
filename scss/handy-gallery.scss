@@ -1,0 +1,164 @@
+$color-backdrop: rgba(24, 24, 24, 0.8);
+$color-backdrop-solid: rgba(12, 12, 12, 1);
+$color-toolbar: rgba(24, 24, 24, 0.8);
+$color-control: #bebebe;
+$color-control-highlight: rgba(200, 200, 200, 0.1);
+
+$transition-appear: all 0.36s ease-out;
+$transition-appear: all 0.15s ease-out;
+
+@import "_demo.scss";
+
+body.hg-active {
+  overflow: hidden;
+  height: 100vh;
+  max-height: 100vh;
+}
+.hg-section {
+}
+.hg-backdrop {
+  color: $color-control;
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: $color-backdrop;
+  z-index: 1000;
+  opacity: 0;
+  pointer-events: none;
+  transition: $transition-appear;
+  body.hg-active & {
+    opacity: 1;
+    pointer-events: all;
+  }
+  &.fullscreen {
+    background: $color-backdrop-solid;
+  }
+}
+.hg-showpiece-section {
+  display: flex;
+  align-items: stretch;
+  flex: 1;
+}
+.hg-showpiece-wrapper {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+  justify-items: center;
+  &.loading {
+    &:before {
+      content: "Loading...";
+      position: absolute;
+    }
+  }
+}
+img.hg-showpeice {
+  transition: $transition-default;
+  &.hg-showpiece-current {
+    width: 100%;
+    height: 100%;
+    object-fit: scale-down;
+    opacity: 1;
+  }
+  .loading & {
+    opacity: 0;
+  }
+}
+.hg-control-wrapper {
+  display: flex;
+  align-items: stretch;
+  height: 100%;
+  .hg-backdrop.fullscreen & {
+    position: absolute;
+    &.hg-control-wrapper-l {
+      left: 0;
+    }
+    &.hg-control-wrapper-r {
+      right: 0;
+    }
+  }
+}
+.hg-control {
+  display: flex;
+  align-items: center;
+  padding: 1em;
+  cursor: pointer;
+  transition: $transition-default;
+  .hg-backdrop.fullscreen & {
+    opacity: 0;
+  }
+  .hg-backdrop.fullscreen .hg-control-wrapper:hover > & {
+    opacity: 1;
+  }
+}
+.hg-toolbar-wrapper,
+.hg-infobar-wrapper {
+  display: flex;
+  width: 100%;
+  z-index: 1;
+  .hg-backdrop.fullscreen & {
+    position: absolute;
+  }
+}
+.hg-toolbar-wrapper {
+  .hg-backdrop.fullscreen & {
+    top: 0;
+  }
+}
+.hg-infobar-wrapper {
+  .hg-backdrop.fullscreen & {
+    bottom: 0;
+  }
+}
+.hg-toolbar,
+.hg-infobar {
+  background: $color-toolbar;
+  display: flex;
+  flex: 1;
+  transition: $transition-default;
+  .hg-backdrop.fullscreen & {
+    opacity: 0;
+  }
+  .hg-backdrop.fullscreen :hover > & {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+}
+.hg-toolbar {
+  justify-content: flex-end;
+  justify-items: flex-end;
+  .hg-backdrop.fullscreen & {
+    transform: translateY(-100%);
+  }
+}
+.hg-infobar {
+  padding: 1em;
+  justify-content: center;
+  justify-items: center;
+  .hg-backdrop.fullscreen & {
+    transform: translateY(100%);
+  }
+}
+
+.hg-toolbar-control {
+  padding: 1em;
+  cursor: pointer;
+  &:hover {
+    background: $color-control-highlight;
+  }
+}
+
+.hg-img-full {
+}
+.hg-img-thumb {
+}
+
+[data-hg] {
+  cursor: pointer;
+}

@@ -1,0 +1,138 @@
+$coror-primary : #036;
+$coror-secondary : #c69;
+$coror-light : #eee;
+$coror-dark : #333;
+
+$transition-default: all .15s ease-out;
+$transition-capture: all .3s ease-out;
+
+html, body, #demo-page {
+    min-height: 100vh;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+}
+
+#demo-page {
+    display: flex;
+    flex-direction: column;
+}
+
+#demo-header,
+#demo-footer {
+    padding: 2em;
+    background-color: $coror-primary;
+    color: $coror-light;
+}
+
+#demo-body {
+    flex-grow: 1;
+    padding: 2em 4em;
+}
+
+.media-section {
+    margin: 2em -0.5em;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.media-item {
+    flex-basis: 10em;
+    flex-grow: 1;
+    max-width: 15em;
+    min-width: 10em;
+    margin: 0.5em;
+    overflow: hidden;
+    border-radius: 3px;
+    box-shadow: 0px 1px 3px rgba(50, 50, 50, 0.75);
+}
+
+.media-thumb {
+    overflow: hidden;
+    position: relative;
+    height: 0;
+    padding-top: 100%;
+
+    img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+
+        transition: $transition-capture ;
+
+    }
+    &:hover img {
+        top: -5%;
+        left: -5%;
+        width: 110%;
+        height: 110%;
+    }
+
+    .media-thumb-overlap {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-items: center;
+        align-content: center;
+        justify-content: center;
+        opacity: 0;
+        pointer-events: none;
+        z-index: 1;
+        transition: $transition-capture;
+        color: $coror-light;
+    
+        background-color: rgba(0,0,0,.5);
+    }
+
+    &:hover > .media-thumb-overlap {
+        opacity: 1;
+        pointer-events: all;
+    }
+}
+
+.media-title {
+    font-weight: 300;
+    margin: 0 0 0.33em;
+}
+
+.media-capture {
+    padding: 1em;
+}
+
+.media-description {
+    font-size: 0.75em;
+    opacity: 0.75;
+    margin: 0.33em 0 0;
+}
+
+i[class^="icon-"] {
+    font-style: normal;
+    font-size: 2rem;
+    width: 1.1em;
+    height: 1.1em;
+    display: flex;
+    place-items: center;
+    place-content: center;
+    border: 1px solid $coror-light;
+    border-radius: 3px;
+    transition: $transition-default;
+    &:hover {
+        background: $coror-light;
+        color: $coror-dark;
+    }
+}
+.icon-zoom:before {
+    content: "⌕";
+    transform: translateY(-.05em);
+}
