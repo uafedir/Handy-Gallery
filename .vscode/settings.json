@@ -23,5 +23,7 @@
     "liveServer.settings.port": 5502,
     "liveServer.settings.CustomBrowser": "chrome:PrivateMode",
     "liveServer.settings.donotShowInfoMsg": true,
-    "liveSassCompile.settings.showOutputWindow": false
+    "liveSassCompile.settings.showOutputWindow": false,
+    "editor.tabSize": 2,
+    "markJump.maximumLimit": 30
 }
